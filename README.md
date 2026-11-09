@@ -22,5 +22,6 @@ Then open [http://localhost:8000](http://localhost:8000) in your browser. Stop t
 
 - Set the number of columns and rows independently from 10 to 50. Existing cells in the overlapping area are preserved when resizing.
 - Click a grid cell to cycle through **empty → wall → chaser → evader → empty**. There can be at most one chaser and one evader; clicking skips a chaser or evader property if one is already on another cell.
+- Use **Reset grid** above the grid to make every cell empty without changing its dimensions.
 - Choose planned chaser and evader algorithms and adjust the move delay. These controls do not run a simulation yet.
 - Open **Display results** to see the metrics table and its not-yet-implemented state.

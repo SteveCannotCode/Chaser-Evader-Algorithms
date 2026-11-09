@@ -95,6 +95,10 @@ select:invalid { color: #858fa1; }
 
 .grid-card { min-width: 0; padding: 23px 23px 17px; }
 .grid-card-heading { align-items: center; padding-bottom: 16px; }
+.grid-header-actions { display: flex; align-items: center; gap: 16px; }
+.reset-grid-button { padding: 7px 10px; border: 1px solid #e1e6f0; border-radius: 5px; background: #fff; color: #647189; font-size: 10px; font-weight: 600; transition: background-color 100ms ease, border-color 100ms ease, color 100ms ease; }
+.reset-grid-button:hover { border-color: #cbd5eb; background: #f7f9fd; color: #3d5fcf; }
+.reset-grid-button:focus-visible { outline: 2px solid #6b88f0; outline-offset: 2px; }
 .grid-size { display: flex; flex-direction: column; align-items: flex-end; color: #35425a; font: 700 16px "Space Grotesk", sans-serif; white-space: nowrap; }
 .grid-size-caption { margin-top: 2px; color: #9aa3b3; font: 500 9px "DM Sans", sans-serif; }
 .grid-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 11px; color: #7d889b; font-size: 10px; }

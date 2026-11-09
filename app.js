@@ -10,6 +10,7 @@
   };
   const propertyMarks = { empty: "", wall: "W", chaser: "C", evader: "E" };
   const gridElement = document.querySelector("#grid");
+  const resetGridButton = document.querySelector("#reset-grid");
   const columnsInput = document.querySelector("#grid-columns");
   const rowsInput = document.querySelector("#grid-rows");
   const gridStatus = document.querySelector("#grid-status");
@@ -116,6 +117,11 @@
 
   columnsInput.addEventListener("change", resizeGrid);
   rowsInput.addEventListener("change", resizeGrid);
+  resetGridButton.addEventListener("click", () => {
+    cells = Array(columns * rows).fill("empty");
+    renderGrid();
+    gridStatus.textContent = `Grid reset. All ${columns * rows} cells are empty.`;
+  });
 
   const delayInput = document.querySelector("#move-delay");
   const delayValue = document.querySelector("#move-delay-value");
