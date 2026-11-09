@@ -1,179 +1,74 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f4f6fb">
-    <title>Chaser &amp; Evader — Grid Lab</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="app.js" defer></script>
-  </head>
-  <body>
-    <div class="app-shell">
-      <header class="topbar">
-        <a class="brand" href="#" aria-label="Chaser and Evader Grid Lab home">
-          <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
-          <span>Grid<span class="brand-light">Lab</span></span>
-        </a>
-        <span class="project-label">CHASER &amp; EVADER</span>
-      </header>
 
-      <main>
-        <section class="page-heading" aria-labelledby="page-title">
-          <div>
-            <p class="eyebrow">SEARCH ALGORITHM PLAYGROUND</p>
-            <h1 id="page-title">Build your grid</h1>
-            <p class="page-description">Set up a world for the chaser and evader. Choose a cell to cycle through its properties.</p>
-          </div>
-          <div class="setup-badge"><span aria-hidden="true"></span> Setup mode</div>
-        </section>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dynamic Tracking: Chaser vs Evader</title>
+</head>
 
-        <div class="tab-list" role="tablist" aria-label="Workspace">
-          <button class="tab-button is-active" id="configuration-tab" type="button" role="tab"
-            aria-selected="true" aria-controls="configuration-panel" tabindex="0">
-            <span class="tab-icon" aria-hidden="true">▦</span> Configuration
-          </button>
-          <button class="tab-button" id="results-tab" type="button" role="tab"
-            aria-selected="false" aria-controls="results-panel" tabindex="-1">
-            <span class="tab-icon results-icon" aria-hidden="true">▤</span> Display results
-          </button>
+<body>
+
+  <main>
+    <div class="navbar">
+      <button type="button">Configuration</button>
+      <button type="button">Display Results</button>
+    </div>
+
+    <section class="configuration-section">
+      <div class="parameters">
+        <div class="grid-size">
+          <label class="grid-size-label" for="grid-columns">
+            Columns (X)
+            <input id="grid-columns" name="columns" type="number" min="10" max="50" value="10">
+          </label>
+          <span aria-hidden="true">x</span>
+          <label class="grid-size-label" for="grid-rows">
+            Rows (Y)
+            <input id="grid-rows" name="rows" type="number" min="10" max="50" value="10">
+          </label>
         </div>
 
-        <section class="tab-panel" id="configuration-panel" role="tabpanel"
-          aria-labelledby="configuration-tab" tabindex="0">
-          <div class="workspace-grid">
-            <aside class="settings-card card">
-              <div class="card-heading">
-                <div>
-                  <p class="eyebrow">YOUR WORLD</p>
-                  <h2>Configuration</h2>
-                </div>
-                <span class="section-number">01</span>
-              </div>
+        <div class="chaser-algorithm">
+          <label for="chaser-algorithm">Chaser algorithm</label>
+          <select id="chaser-algorithm">
+            <option value="">Choose an algorithm</option>
+            <option value="bfs">Breadth-First Search (BFS)</option>
+            <option value="gbfs">Greedy Best-First Search (GBFS)</option>
+            <option value="astar">A* Search (A*)</option>
+          </select>
+        </div>
 
-              <div class="control-section">
-                <h3 class="control-title">Grid dimensions</h3>
-                <p class="control-help">Choose a size from 10 to 50 cells per side.</p>
-                <div class="dimension-fields">
-                  <label class="field-label" for="grid-columns">
-                    Columns <span class="axis-label">(X)</span>
-                    <input id="grid-columns" name="columns" type="number" min="10" max="50" step="1" value="10">
-                  </label>
-                  <span class="dimension-by" aria-hidden="true">×</span>
-                  <label class="field-label" for="grid-rows">
-                    Rows <span class="axis-label">(Y)</span>
-                    <input id="grid-rows" name="rows" type="number" min="10" max="50" step="1" value="10">
-                  </label>
-                </div>
-              </div>
+        <div class="evader-algorithm">
+          <label for="evader-algorithm">Evader algorithm</label>
+          <select id="evader-algorithm">
+            <option value="">Choose an algorithm</option>
+            <option value="rm">Random Movement (RM)</option>
+            <option value="mm">Maximize Manhattan (MM)</option>
+            <option value="msp">Maximize Shortest-Path (MSP)</option>
+          </select>
+        </div>
 
-              <div class="control-section">
-                <h3 class="control-title">Chaser algorithm</h3>
-                <label class="sr-only" for="chaser-algorithm">Choose a chaser algorithm</label>
-                <select id="chaser-algorithm">
-                  <option value="">Choose an algorithm</option>
-                  <option value="bfs">Breadth-First Search (BFS)</option>
-                  <option value="gbfs">Greedy Best-First Search (GBFS)</option>
-                  <option value="astar">A* Search (A*)</option>
-                </select>
-              </div>
+        <div class="move-delay">
+          <label for="move-delay">Move delay</label>
+          <output id="move-delay-value" for="move-delay">0.5 <span>sec</span></output>
+          <input id="move-delay" class="range-input" type="range" min="0" max="2" step="0.1" value="0.5">
+        </div>
 
-              <div class="control-section">
-                <h3 class="control-title">Evader algorithm</h3>
-                <label class="sr-only" for="evader-algorithm">Choose an evader algorithm</label>
-                <select id="evader-algorithm">
-                  <option value="">Choose an algorithm</option>
-                  <option value="random">Random Movement (RM)</option>
-                  <option value="manhattan">Maximize Manhattan (MM)</option>
-                  <option value="shortest-path">Maximize Shortest-Path (MSP)</option>
-                </select>
-              </div>
+        <div class="simulate-button">
+          <button type="button" disabled>Simulate</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const moveDelay = document.querySelector("#move-delay");
+    const moveDelayValue = document.querySelector("#move-delay-value");
 
-              <div class="control-section delay-section">
-                <div class="delay-heading">
-                  <label class="control-title" for="move-delay">Move delay</label>
-                  <output id="move-delay-value" for="move-delay">1.0 <span>sec</span></output>
-                </div>
-                <p class="control-help">Pause between moves during a simulation.</p>
-                <input id="move-delay" class="range-input" type="range" min="0" max="3" step="0.1" value="1">
-                <div class="range-limits"><span>0 sec</span><span>3 sec</span></div>
-              </div>
+    moveDelay.addEventListener("input", () => {
+      moveDelayValue.textContent = `${Number(moveDelay.value).toFixed(1)} sec`;
+    });
+  </script>
+</body>
 
-              <p class="setup-note"><span aria-hidden="true">i</span> Algorithm controls are ready to configure. Simulation will be available in a future update.</p>
-            </aside>
-
-            <section class="grid-card card" aria-labelledby="grid-title">
-              <div class="grid-card-heading">
-                <div>
-                  <p class="eyebrow">INTERACTIVE CANVAS</p>
-                  <h2 id="grid-title">Grid workspace</h2>
-                </div>
-                <div class="grid-header-actions">
-                  <button id="reset-grid" class="reset-grid-button" type="button">Reset grid</button>
-                  <span class="grid-size"><span id="grid-size">10 × 10</span><span class="grid-size-caption">cells</span></span>
-                </div>
-              </div>
-              <div class="grid-meta">
-                <p>Click a cell to change its property</p>
-                <span id="cell-count">100 cells</span>
-              </div>
-              <div class="grid-viewport">
-                <div id="grid" class="grid" role="group" aria-label="Editable grid. Click a cell to cycle its property."></div>
-              </div>
-              <div class="grid-footer">
-                <div class="legend" aria-label="Cell property legend">
-                  <span class="legend-item"><span class="legend-swatch empty-swatch"></span>Empty <b id="empty-count">100</b></span>
-                  <span class="legend-item"><span class="legend-swatch wall-swatch"></span>Wall <b id="wall-count">0</b></span>
-                  <span class="legend-item"><span class="legend-swatch chaser-swatch"></span>Chaser <b id="chaser-count">0</b></span>
-                  <span class="legend-item"><span class="legend-swatch evader-swatch"></span>Evader <b id="evader-count">0</b></span>
-                </div>
-                <p class="cycle-hint">EMPTY <span aria-hidden="true">→</span> WALL <span aria-hidden="true">→</span> CHASER <span aria-hidden="true">→</span> EVADER</p>
-              </div>
-              <p id="grid-status" class="sr-only" aria-live="polite"></p>
-            </section>
-          </div>
-        </section>
-
-        <section class="tab-panel results-panel" id="results-panel" role="tabpanel"
-          aria-labelledby="results-tab" tabindex="0" hidden>
-          <div class="results-card card">
-            <div class="results-heading">
-              <div>
-                <p class="eyebrow">SIMULATION SUMMARY</p>
-                <h2>Display results</h2>
-                <p class="page-description">Performance metrics for the most recent simulation.</p>
-              </div>
-              <span class="section-number">02</span>
-            </div>
-            <div class="empty-state">
-              <div class="empty-state-icon" aria-hidden="true">
-                <span></span><span></span><span></span><span></span>
-              </div>
-              <h3>No results yet</h3>
-              <p>Simulation algorithms have not been implemented. Results will appear here once a simulation is available.</p>
-            </div>
-            <div class="table-wrap">
-              <table>
-                <caption>Results from the most recent simulation</caption>
-                <thead>
-                  <tr><th scope="col">Metric</th><th scope="col">Value</th></tr>
-                </thead>
-                <tbody>
-                  <tr><th scope="row">Chaser computation time</th><td>—</td></tr>
-                  <tr><th scope="row">Evader computation time</th><td>—</td></tr>
-                  <tr><th scope="row">Chaser cells expanded</th><td>—</td></tr>
-                  <tr><th scope="row">Evader cells expanded</th><td>—</td></tr>
-                  <tr><th scope="row">Chaser moves</th><td>—</td></tr>
-                  <tr><th scope="row">Evader moves</th><td>—</td></tr>
-                  <tr><th scope="row">Total turns</th><td>—</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer class="app-footer"><span>GRID LAB</span><span>Algorithm simulation is coming soon</span></footer>
-    </div>
-  </body>
 </html>
