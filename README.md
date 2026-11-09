@@ -1,2 +1,2 @@
 # Chaser-Evader-Algorithms
-Algorithm for a project based on AI search algorithms
+Algorithms for a project based on AI search algorithms
